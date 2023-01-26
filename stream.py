@@ -8,17 +8,10 @@ class_names = ['ceket', 'esofman', 'gomlek', 'kazak', 'mont', 'pantolon', 'sort'
 st.set_page_config(page_title = "Trendyol Image Classification")
 st.title(" Trendyol Image Classification")
 st.markdown("---")
+
  
-## Sidebar
-st.sidebar.header("TF Lite Models")
-display = ("Select a Model","Trendyol")
-options = list(range(len(display)))
-value = st.sidebar.selectbox("Model", options, format_func=lambda x: display[x])
-print(value)
- 
-if value == 1:
-    tflite_interpreter = tf.lite.Interpreter(model_path='converted_model.tflite')
-    tflite_interpreter.allocate_tensors()
+tflite_interpreter = tf.lite.Interpreter(model_path='converted_model.tflite')
+tflite_interpreter.allocate_tensors()
  
 def set_input_tensor(interpreter, image):
   """Sets the input tensor."""
@@ -44,9 +37,7 @@ if uploaded_file is not None:
     path = os.path.join("/tmp",uploaded_file.name)
     img = tf.keras.preprocessing.image.load_img(path , grayscale=False, color_mode='rgb', target_size=(224,224,3), interpolation='nearest')
     st.image(img)
-    print(value)
-    if value == 2 or value == 5:
-        img = tf.image.convert_image_dtype(img, tf.uint8)
+    #print(value)
     img_array = tf.keras.preprocessing.image.img_to_array(img)
     img_array = tf.expand_dims(img_array, 0)
  
