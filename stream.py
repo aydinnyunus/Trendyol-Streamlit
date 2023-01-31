@@ -8,6 +8,7 @@ class_names = ['ceket', 'esofman', 'gomlek', 'kazak', 'mont', 'pantolon', 'sort'
 st.set_page_config(page_title = "Trendyol Image Classification")
 st.title(" Trendyol Image Classification")
 st.markdown("---")
+st.write("Source Code : https://github.com/aydinnyunus/ClothesClassification")
 
  
 tflite_interpreter = tf.lite.Interpreter(model_path='converted_model.tflite')
